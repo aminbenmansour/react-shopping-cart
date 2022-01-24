@@ -1,0 +1,18 @@
+name: ci
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ./app
+          record: true
+        env:
+          CYPRESS_BASE_URL: https://react-shopping-cart-lilac.vercel.app

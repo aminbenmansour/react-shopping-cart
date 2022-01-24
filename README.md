@@ -1,2 +1,2 @@
-# react-todolist-app
+# react-shopping-cart
 ---

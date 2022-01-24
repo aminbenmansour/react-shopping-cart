@@ -1,7 +1,8 @@
 {
+  "projectId": "5tk97s",
+  "nodeVersion": "bundled",
   "component": {
     "testFiles": "**/*.test.{js,ts,jsx,tsx}",
     "componentFolder": "src"
-  },
-  "projectId": "5tk97s"
+  }
 }

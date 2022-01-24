@@ -12,7 +12,10 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v2
         with:
+          build: yarn build
+          start: yarn start
           working-directory: ./
           record: true
         env:
           CYPRESS_BASE_URL: https://react-shopping-cart-lilac.vercel.app
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

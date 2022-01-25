@@ -10,13 +10,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Run Cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v1
         with:
           # build: yarn build # commented until building a production release
           start: yarn start
           working-directory: ./
           wait-on: http://localhost:3000
           record: true
+          parallel: true
         env:
           CYPRESS_BASE_URL: https://react-shopping-cart-lilac.vercel.app
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

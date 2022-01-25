@@ -21,8 +21,8 @@ jobs:
           start: yarn start
           working-directory: ./
           wait-on: http://localhost:3000
-          record: true
-          parallel: true
-        env:
-          CYPRESS_BASE_URL: http://localhost:3000
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          record: false
+          parallel: false
+        # env:
+          # CYPRESS_BASE_URL: http://localhost:3000
+          # CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

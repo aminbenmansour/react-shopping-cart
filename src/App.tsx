@@ -1,9 +1,9 @@
-
 // styles
-import { useQuery } from "react-query";
-import { Wrapper } from "./App.styles";
-//types
+import { useQuery } from 'react-query';
+// eslint-disable-next-line
+import { Wrapper } from './App.styles';
 
+// types
 export type CartItemType = {
   id: number;
   category: string;
@@ -15,15 +15,16 @@ export type CartItemType = {
 }
 const domain = 'https://fakestoreapi.com';
 
-const getProducts = async (): Promise<CartItemType[]> => await (await fetch(`${domain}/products`)).json()
+const getProducts = async (): Promise<CartItemType[]> => {
+  const res = await (await fetch(`${domain}/products`)).json();
+  return res;
+};
 
-const App = () => {
+function App() {
+  // eslint-disable-next-line
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts);
-  console.log(data);
   return (
-    <div className="App">
-      
-    </div>
+    <div className="App" />
   );
 }
 

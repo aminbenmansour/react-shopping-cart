@@ -4,8 +4,8 @@ import App from './App';
 
 const client = new QueryClient();
 ReactDOM.render(
-    <QueryClientProvider client={client}>
-        <App />
-    </QueryClientProvider>
-    , document.getElementById('root')
+  <QueryClientProvider client={client}>
+    <App />
+  </QueryClientProvider>,
+  document.getElementById('root'),
 );

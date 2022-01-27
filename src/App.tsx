@@ -1,10 +1,8 @@
-// styles
 import { Grid, LinearProgress } from '@mui/material';
 import { useQuery } from 'react-query';
-// eslint-disable-next-line
-import { Wrapper } from './components/item/Item.style';
-import Item from './components/item/Item';
+import { Wrapper } from './App.styles';
 
+import Item from './components/item/Item';
 // types
 export type CartItemType = {
   id: number;

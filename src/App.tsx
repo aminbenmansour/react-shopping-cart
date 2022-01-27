@@ -2,7 +2,7 @@
 import { Grid, LinearProgress } from '@mui/material';
 import { useQuery } from 'react-query';
 // eslint-disable-next-line
-import { Wrapper } from './App.styles';
+import { Wrapper } from './components/item/Item.style';
 import Item from './components/item/Item';
 
 // types
@@ -30,8 +30,12 @@ function App() {
   if (isLoading) return <LinearProgress />;
   if (error) return <div>something went wrong ...</div>;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getTotalItems = () => null;
+
   const handleAddToCart = () => null;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleRemoveFromCart = () => null;
 
   return (

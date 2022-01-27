@@ -1,4 +1,5 @@
 // styles
+import { LinearProgress } from '@mui/material';
 import { useQuery } from 'react-query';
 // eslint-disable-next-line
 import { Wrapper } from './App.styles';
@@ -13,7 +14,8 @@ export type CartItemType = {
   title: string;
   amount: number;
 }
-const domain = 'https://fakestoreapi.com';
+
+export const domain = 'https://fakestoreapi.com';
 
 const getProducts = async (): Promise<CartItemType[]> => {
   const res = await (await fetch(`${domain}/products`)).json();
@@ -23,6 +25,14 @@ const getProducts = async (): Promise<CartItemType[]> => {
 function App() {
   // eslint-disable-next-line
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts);
+
+  if (isLoading) return <LinearProgress />;
+  if (error) return <div>something went wrong ...</div>;
+
+  const getTotalItems = () => null;
+  const handleAddToCart = () => null;
+  const handleRemoveFromCart = () => null;
+
   return (
     <div className="App" />
   );

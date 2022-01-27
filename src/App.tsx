@@ -1,8 +1,9 @@
 // styles
-import { LinearProgress } from '@mui/material';
+import { Grid, LinearProgress } from '@mui/material';
 import { useQuery } from 'react-query';
 // eslint-disable-next-line
 import { Wrapper } from './App.styles';
+import Item from './components/item/Item';
 
 // types
 export type CartItemType = {
@@ -34,7 +35,18 @@ function App() {
   const handleRemoveFromCart = () => null;
 
   return (
-    <div className="App" />
+    <Wrapper>
+      <Grid container spacing={3}>
+        {
+          // eslint-disable-next-line arrow-parens
+          data?.map(item => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))
+        }
+      </Grid>
+    </Wrapper>
   );
 }
 

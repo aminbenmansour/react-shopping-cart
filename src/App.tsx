@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { StyledButton, Wrapper } from './App.styles';
 
-import Item from './components/item/Item';
+import Item from './components/Item/Item';
 
 // types
 export type CartItemType = {

@@ -1,8 +1,13 @@
-import { Grid, LinearProgress } from '@mui/material';
+import {
+ Badge, Drawer, Grid, LinearProgress,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Wrapper } from './App.styles';
+import { StyledButton, Wrapper } from './App.styles';
 
 import Item from './components/item/Item';
+
 // types
 export type CartItemType = {
   id: number;
@@ -22,14 +27,16 @@ const getProducts = async (): Promise<CartItemType[]> => {
 };
 
 function App() {
+  const [cartOpen, setCartOpen] = useState(false);
   // eslint-disable-next-line
+  const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts);
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>something went wrong ...</div>;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const getTotalItems = () => null;
+  const getTotalItems = (items: CartItemType[]) => null;
 
   const handleAddToCart = () => null;
 
@@ -38,6 +45,15 @@ function App() {
 
   return (
     <Wrapper>
+      <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
+        Cart goes here
+      </Drawer>
+
+      <StyledButton onClick={() => setCartOpen(true)}>
+        <Badge badgeContent={getTotalItems(cartItems)} color="error">
+          <AddShoppingCartIcon />
+        </Badge>
+      </StyledButton>
       <Grid container spacing={3}>
         {
           // eslint-disable-next-line arrow-parens

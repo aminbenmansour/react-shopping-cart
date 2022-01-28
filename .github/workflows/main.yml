@@ -19,7 +19,7 @@ jobs:
         with:
           # build: yarn build # commented until building a production release
           start: yarn start
-          working-directory: ./
+          working-directory: ./app
           wait-on: http://localhost:3000
           record: false
           parallel: false

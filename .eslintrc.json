@@ -33,7 +33,10 @@
             }
         ],
         "react/react-in-jsx-scope": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+        "indent": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off"
     },
     "settings": {
         "import/resolver": {

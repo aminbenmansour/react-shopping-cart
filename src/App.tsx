@@ -1,7 +1,13 @@
-// styles
+import {
+ Badge, Drawer, Grid, LinearProgress,
+} from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
-// eslint-disable-next-line
-import { Wrapper } from './App.styles';
+import { StyledButton, Wrapper } from './App.styles';
+
+import Item from './components/Item/Item';
+import Cart from './components/Cart/Cart';
 
 // types
 export type CartItemType = {
@@ -13,7 +19,8 @@ export type CartItemType = {
   title: string;
   amount: number;
 }
-const domain = 'https://fakestoreapi.com';
+
+export const domain = 'https://fakestoreapi.com';
 
 const getProducts = async (): Promise<CartItemType[]> => {
   const res = await (await fetch(`${domain}/products`)).json();
@@ -21,10 +28,46 @@ const getProducts = async (): Promise<CartItemType[]> => {
 };
 
 function App() {
+  const [cartOpen, setCartOpen] = useState(false);
   // eslint-disable-next-line
+  const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts);
+
+  if (isLoading) return <LinearProgress />;
+  if (error) return <div>something went wrong ...</div>;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const getTotalItems = (items: CartItemType[]) => null;
+
+  const handleAddToCart = () => null;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleRemoveFromCart = () => null;
+
   return (
-    <div className="App" />
+    <Wrapper>
+      <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
+
+        {/* eslint-disable-next-line max-len */}
+        <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
+      </Drawer>
+
+      <StyledButton onClick={() => setCartOpen(true)}>
+        <Badge badgeContent={getTotalItems(cartItems)} color="error">
+          <AddShoppingCartIcon />
+        </Badge>
+      </StyledButton>
+      <Grid container spacing={3}>
+        {
+          // eslint-disable-next-line arrow-parens
+          data?.map(item => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))
+        }
+      </Grid>
+    </Wrapper>
   );
 }
 

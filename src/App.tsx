@@ -1,5 +1,5 @@
 import {
- Badge, Drawer, Grid, LinearProgress,
+  Badge, Drawer, Grid, LinearProgress,
 } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useState } from 'react';
@@ -36,13 +36,33 @@ function App() {
   if (isLoading) return <LinearProgress />;
   if (error) return <div>something went wrong ...</div>;
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const getTotalItems = (items: CartItemType[]) => null;
+  const getTotalItems = (items: CartItemType[]) => (
+    items.reduce((ack: number, item) => ack + item.amount, 0)
+  );
 
-  const handleAddToCart = () => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems((prev) => {
+      // 1. Is the item already added in the cart?
+      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleRemoveFromCart = () => null;
+      if (isItemInCart) {
+        // eslint-disable-next-line max-len
+        return prev.map((item) => (item.id === clickedItem.id ? { ...item, amount: item.amount + 1 } : item));
+      }
+      // First time the item is added
+      return [...prev, { ...clickedItem, amount: 1 }];
+    });
+  };
+
+  const handleRemoveFromCart = (id: number) => {
+    setCartItems((prev) => prev.reduce((ack, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) return ack;
+          return [...ack, { ...item, amount: item.amount - 1 }];
+        }
+          return [...ack, item];
+      }, [] as CartItemType[]));
+  };
 
   return (
     <Wrapper>

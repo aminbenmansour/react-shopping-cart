@@ -26,6 +26,8 @@ function Cart({ cartItems, addToCart, removeFromCart }: Props) {
                     removeFromCart={removeFromCart}
                 />
             ))}
+            { /* eslint-disable-next-line react/jsx-one-expression-per-line */}
+            <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
         </Wrapper>
     );
 }

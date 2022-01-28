@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { StyledButton, Wrapper } from './App.styles';
 
 import Item from './components/Item/Item';
+import Cart from './components/Cart/Cart';
 
 // types
 export type CartItemType = {
@@ -46,7 +47,9 @@ function App() {
   return (
     <Wrapper>
       <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-        Cart goes here
+
+        {/* eslint-disable-next-line max-len */}
+        <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
       </Drawer>
 
       <StyledButton onClick={() => setCartOpen(true)}>

@@ -29,3 +29,8 @@ The purpose of this repository is to build a simple react application using Test
   ```
   npm start
   ```
+  
+# Metrics
+  Vercel uses metrics to evaluate and monitor the health of our application. Here are the metrics for our application.
+  ![Screenshot_20220128_030116](https://user-images.githubusercontent.com/50111205/151868176-c81d08e0-cc83-4faa-8546-e3d8d77b40fc.png)
+
